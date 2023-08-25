@@ -1,7 +1,7 @@
 # These files will be created dynamically
-hifiberry-default-4ca.xml
-hifiberry-default-dac.xml
 *.bak
 *.dat
 *.hex
 *.h
+**/*NetList.xml
+**/*_IC *
