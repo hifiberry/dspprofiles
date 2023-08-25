@@ -1,3 +1,0 @@
-volumeControlRegister: -3dB
-invertMute: 0x1
-enableSPDIFRegister: 0x0
