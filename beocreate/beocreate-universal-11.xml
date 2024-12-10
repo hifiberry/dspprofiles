@@ -1,63 +1,63 @@
 <?xml version="1.0" standalone="no"?>
 <ROM IC="ADAU1451" IC_Address="1" Address_byte_length="2">
-	<beometa>
-		<metadata type="sampleRate">48000</metadata>
-		<metadata type="profileName">Beocreate Universal</metadata>
-		<metadata type="profileVersion">11</metadata>
-		<metadata type="programID">beocreate-universal</metadata>
-		<metadata type="modelName" modelID="beocreate-4ca-mk1">Beocreate 4-Channel Amplifier</metadata>
-		<metadata type="checksum">97C9C5A88582888D111259BF70D6D79E</metadata>
-		<metadata type="balanceRegister" storable="yes">799</metadata>
-		<metadata type="spdifTXUserDataSource" storable="yes">63135</metadata>
-		<metadata type="spdifTXUserDataL0" storable="yes">63135</metadata>
-		<metadata type="spdifTXUserDataL1" storable="yes">63168</metadata>
-		<metadata type="spdifTXUserDataL2" storable="yes">63169</metadata>
-		<metadata type="spdifTXUserDataL3" storable="yes">63170</metadata>
-		<metadata type="spdifTXUserDataL4" storable="yes">63171</metadata>
-		<metadata type="spdifTXUserDataL5" storable="yes">63172</metadata>
-		<metadata type="spdifTXUserDataR0" storable="yes">63173</metadata>
-		<metadata type="spdifTXUserDataR1" storable="yes">63185</metadata>
-		<metadata type="readIsDaisyChainSlaveRegister">98</metadata>
-		<metadata type="canBecomeDaisyChainSlaveRegister">4833</metadata>
-		<metadata type="muteRegister">4834</metadata>
-		<metadata type="muteInvertRegister" storable="yes">4856</metadata>
-		<metadata type="enableSPDIFTransmitterRegister">4835</metadata>
-		<metadata type="disableSPDIFTransmitterAtMuteRegister">4836</metadata>
-		<metadata type="sensitivitySPDIFRegister">86</metadata>
-		<metadata type="enableSPDIFRegister" storable="yes">4841</metadata>
-		<metadata type="readSPDIFOnRegister">93</metadata>
-		<metadata type="tuningForkPitchRegister">29</metadata>
-		<metadata type="tuningForkOnRegister">25</metadata>
-		<metadata type="customFilterRegisterBankLeft" storable="yes">329/80</metadata>
-		<metadata type="customFilterRegisterBankRight" storable="yes">249/80</metadata>
-		<metadata type="toneControlRightRegisters" storable="yes">108/70</metadata>
-		<metadata type="toneControlLeftRegisters" storable="yes">179/70</metadata>
-		<metadata type="channelSelectDRegister" channels="left,right,mono,side" multiplier="1" storable="yes">4860</metadata>
-		<metadata type="channelSelectCRegister" channels="left,right,mono,side" multiplier="1" storable="yes">4863</metadata>
-		<metadata type="channelSelectBRegister" channels="left,right,mono,side" multiplier="1" storable="yes">4862</metadata>
-		<metadata type="channelSelectARegister" channels="left,right,mono,side" multiplier="1" storable="yes">4861</metadata>
-		<metadata type="invertDRegister" storable="yes">4864</metadata>
-		<metadata type="invertCRegister" storable="yes">4865</metadata>
-		<metadata type="invertBRegister" storable="yes">4866</metadata>
-		<metadata type="invertARegister" storable="yes">4867</metadata>
-		<metadata type="IIR_D" storable="yes">451/80</metadata>
-		<metadata type="IIR_C" storable="yes">531/80</metadata>
-		<metadata type="IIR_B" storable="yes">611/80</metadata>
-		<metadata type="IIR_A" storable="yes">691/80</metadata>
-		<metadata type="levelsARegister" storable="yes">781</metadata>
-		<metadata type="levelsBRegister" storable="yes">778</metadata>
-		<metadata type="levelsCRegister" storable="yes">775</metadata>
-		<metadata type="levelsDRegister" storable="yes">772</metadata>
-		<metadata type="volumeControlRegister" storable="yes">106</metadata>
-		<metadata type="volumeLimitRegister">74</metadata>
-		<metadata type="volumeLimitPiRegister" storable="yes">74</metadata>
-		<metadata type="volumeLimitSPDIFRegister" storable="yes">77</metadata>
-		<metadata type="delayARegister" maxDelay="2000" storable="yes">786</metadata>
-		<metadata type="delayDRegister" maxDelay="2000" storable="yes">783</metadata>
-		<metadata type="delayCRegister" maxDelay="2000" storable="yes">784</metadata>
-		<metadata type="delayBRegister" maxDelay="2000" storable="yes">785</metadata>
-	</beometa>
-  <dateTime>2022-11-06T14:10:57.8251474Z</dateTime>
+        <beometa>
+                <metadata type="sampleRate">48000</metadata>
+                <metadata type="profileName">Beocreate Universal</metadata>
+                <metadata type="profileVersion">11</metadata>
+                <metadata type="programID">beocreate-universal</metadata>
+                <metadata type="modelName" modelID="beocreate-4ca-mk1">Beocreate 4-Channel Amplifier</metadata>
+                <metadata type="checksum">97C9C5A88582888D111259BF70D6D79E</metadata>
+                <metadata type="balanceRegister" storable="yes">799</metadata>
+                <metadata type="spdifTXUserDataSource" storable="yes">63135</metadata>
+                <metadata type="spdifTXUserDataL0" storable="yes">63135</metadata>
+                <metadata type="spdifTXUserDataL1" storable="yes">63168</metadata>
+                <metadata type="spdifTXUserDataL2" storable="yes">63169</metadata>
+                <metadata type="spdifTXUserDataL3" storable="yes">63170</metadata>
+                <metadata type="spdifTXUserDataL4" storable="yes">63171</metadata>
+                <metadata type="spdifTXUserDataL5" storable="yes">63172</metadata>
+                <metadata type="spdifTXUserDataR0" storable="yes">63173</metadata>
+                <metadata type="spdifTXUserDataR1" storable="yes">63185</metadata>
+                <metadata type="readIsDaisyChainSlaveRegister">98</metadata>
+                <metadata type="canBecomeDaisyChainSlaveRegister">4833</metadata>
+                <metadata type="muteRegister">4834</metadata>
+                <metadata type="muteInvertRegister" storable="yes">4856</metadata>
+                <metadata type="enableSPDIFTransmitterRegister">4835</metadata>
+                <metadata type="disableSPDIFTransmitterAtMuteRegister">4836</metadata>
+                <metadata type="sensitivitySPDIFRegister">86</metadata>
+                <metadata type="enableSPDIFRegister" storable="yes">4841</metadata>
+                <metadata type="readSPDIFOnRegister">93</metadata>
+                <metadata type="tuningForkPitchRegister">29</metadata>
+                <metadata type="tuningForkOnRegister">25</metadata>
+                <metadata type="customFilterRegisterBankLeft" storable="yes">329/80</metadata>
+                <metadata type="customFilterRegisterBankRight" storable="yes">249/80</metadata>
+                <metadata type="toneControlRightRegisters" storable="yes">108/70</metadata>
+                <metadata type="toneControlLeftRegisters" storable="yes">179/70</metadata>
+                <metadata type="channelSelectDRegister" channels="left,right,mono,side" multiplier="1" storable="yes">4860</metadata>
+                <metadata type="channelSelectCRegister" channels="left,right,mono,side" multiplier="1" storable="yes">4863</metadata>
+                <metadata type="channelSelectBRegister" channels="left,right,mono,side" multiplier="1" storable="yes">4862</metadata>
+                <metadata type="channelSelectARegister" channels="left,right,mono,side" multiplier="1" storable="yes">4861</metadata>
+                <metadata type="invertDRegister" storable="yes">4864</metadata>
+                <metadata type="invertCRegister" storable="yes">4865</metadata>
+                <metadata type="invertBRegister" storable="yes">4866</metadata>
+                <metadata type="invertARegister" storable="yes">4867</metadata>
+                <metadata type="IIR_D" storable="yes">451/80</metadata>
+                <metadata type="IIR_C" storable="yes">531/80</metadata>
+                <metadata type="IIR_B" storable="yes">611/80</metadata>
+                <metadata type="IIR_A" storable="yes">691/80</metadata>
+                <metadata type="levelsARegister" storable="yes">781</metadata>
+                <metadata type="levelsBRegister" storable="yes">778</metadata>
+                <metadata type="levelsCRegister" storable="yes">775</metadata>
+                <metadata type="levelsDRegister" storable="yes">772</metadata>
+                <metadata type="volumeControlRegister" storable="yes">106</metadata>
+                <metadata type="volumeLimitRegister">74</metadata>
+                <metadata type="volumeLimitPiRegister" storable="yes">74</metadata>
+                <metadata type="volumeLimitSPDIFRegister" storable="yes">77</metadata>
+                <metadata type="delayARegister" maxDelay="2000" storable="yes">786</metadata>
+                <metadata type="delayDRegister" maxDelay="2000" storable="yes">783</metadata>
+                <metadata type="delayCRegister" maxDelay="2000" storable="yes">784</metadata>
+                <metadata type="delayBRegister" maxDelay="2000" storable="yes">785</metadata>
+        </beometa>
+  <dateTime>2024-12-10T11:01:16.8166898Z</dateTime>
   <version>4.2.1.1764</version>
   <page modetype="Mode 0">
     <action instr="writeXbytes" len="4" addr="62464" AddrIncr="0" ParamName="IC 1.HIBERNATE" DspName="IC 1">00 01</action>
@@ -77,7 +77,6 @@
     <action instr="writeXbytes" len="4" addr="62467" AddrIncr="0" ParamName="IC 1.KILL_CORE" DspName="IC 1">00 01</action>
     <action instr="writeXbytes" len="4" addr="62849" AddrIncr="0" ParamName="IC 1.ASRC_MUTE" DspName="IC 1">07 FF</action>
     <action instr="writeXbytes" len="4" addr="62497" AddrIncr="0" ParamName="IC 1.PANIC_CLEAR" DspName="IC 1">00 01</action>
-    <action instr="writeXbytes" len="4" addr="62498" AddrIncr="0" ParamName="IC 1.PANIC_PARITY_MASK" DspName="IC 1">00 03</action>
     <action instr="writeXbytes" len="4" addr="62220" AddrIncr="0" ParamName="IC 1.FTDM_IN12" DspName="IC 1">00 FF</action>
     <action instr="writeXbytes" len="4" addr="62235" AddrIncr="0" ParamName="IC 1.FTDM_IN27" DspName="IC 1">00 FF</action>
     <action instr="writeXbytes" len="4" addr="62250" AddrIncr="0" ParamName="IC 1.FTDM_IN42" DspName="IC 1">00 FF</action>
@@ -169,7 +168,7 @@
     <action instr="writeXbytes" len="4" addr="62464" AddrIncr="0" ParamName="IC 1.HIBERNATE" DspName="IC 1">00 00</action>
     <action instr="writeXbytes" len="6" addr="50" AddrIncr="0" ParamName="g_MasterMode" DspName="IC 1">00 00 00 00</action>
     <action instr="writeXbytes" len="6" addr="39" AddrIncr="0" ParamName="g_spi_mode" DspName="IC 1">00 00 00 01</action>
-    <action instr="writeXbytes" len="6" addr="40" AddrIncr="0" ParamName="g_spi_speed" DspName="IC 1">00 00 00 0A</action>
+    <action instr="writeXbytes" len="6" addr="40" AddrIncr="0" ParamName="g_spi_speed" DspName="IC 1">00 00 00 93</action>
     <action instr="writeXbytes" len="6" addr="41" AddrIncr="0" ParamName="g_spi_address_bytes" DspName="IC 1">00 00 00 04</action>
     <action instr="writeXbytes" len="6" addr="42" AddrIncr="0" ParamName="g_spi_chip_erase_command" DspName="IC 1">C7 00 00 00</action>
     <action instr="writeXbytes" len="6" addr="43" AddrIncr="0" ParamName="g_spi_wren_command" DspName="IC 1">06 00 00 00</action>
@@ -179,7 +178,7 @@
     <action instr="writeXbytes" len="6" addr="57" AddrIncr="0" ParamName="g_initialized" DspName="IC 1">00 00 00 00</action>
     <action instr="writeXbytes" len="6" addr="52" AddrIncr="0" ParamName="g_Erase" DspName="IC 1">00 00 00 01</action>
     <action instr="writeXbytes" len="6" addr="54" AddrIncr="0" ParamName="g_PageAddress" DspName="IC 1">00 00 00 00</action>
-    <action instr="writeXbytes" len="258" addr="60" AddrIncr="4" ParamName="Page_A0_S256_N37_idx0" DspName="IC 1">AA 00 00 10 00 02 00 60 00 69 00 07 01 C2 01 01 00 00 00 10 03 10 00 00 00 00 03 20 00 00 03 20 00 00 0F A4 00 00 00 00 00 00 00 0C 00 00 00 0C 00 00 11 38 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 07 FF FF FF FF FF 00 05 55 5C 00 00 00 00 00 00 C0 00 00 00 C0 00 00 00 08 00 01 00 00 00 00 00 00 05 00 00 00 05 00 00 00 60 00 00 23 A0 00 00 24 30 00 00 BC 40 00 00 5D C0 00 00 5E 20 01 04 96 2B 01 00 00 00 01 00 6B 66 01 00 00 00 01 00 09 03 01 00 00 00 00 00 DA 74 00 00 00 A8 00 00 36 9D 00 00 00 02 01 20 9E 30 00 FF AC 71 01 15 4E D0 00 FF C2 DD 00 FF C1 27 01 00 00 00 00 00 00 60 00 00 23 A0 00 00 24 30 00 00 54 60 00 00 5D C0 00 00 5E 20 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00</action>
+    <action instr="writeXbytes" len="258" addr="60" AddrIncr="4" ParamName="Page_A0_S256_N37_idx0" DspName="IC 1">AA 00 00 10 00 02 00 60 00 69 00 07 00 00 00 93 00 00 00 10 03 10 00 00 00 00 03 20 00 00 03 20 00 00 0F A4 00 00 00 00 00 00 00 0C 00 00 00 0C 00 00 11 38 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 07 FF FF FF FF FF 00 05 55 5C 00 00 00 00 00 00 C0 00 00 00 C0 00 00 00 08 00 01 00 00 00 00 00 00 05 00 00 00 05 00 00 00 60 00 00 23 A0 00 00 24 30 00 00 BC 40 00 00 5D C0 00 00 5E 20 01 04 96 2B 01 00 00 00 01 00 6B 66 01 00 00 00 01 00 09 03 01 00 00 00 00 00 DA 74 00 00 00 A8 00 00 36 9D 00 00 00 02 01 20 9E 30 00 FF AC 71 01 15 4E D0 00 FF C2 DD 00 FF C1 27 01 00 00 00 00 00 00 60 00 00 23 A0 00 00 24 30 00 00 54 60 00 00 5D C0 00 00 5E 20 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00</action>
     <action instr="writeXbytes" len="6" addr="53" AddrIncr="0" ParamName="g_PageSize" DspName="IC 1">00 00 01 00</action>
     <action instr="writeXbytes" len="6" addr="54" AddrIncr="0" ParamName="g_PageAddress" DspName="IC 1">00 00 01 00</action>
     <action instr="writeXbytes" len="258" addr="60" AddrIncr="4" ParamName="Page_A256_S256_N37_idx1" DspName="IC 1">01 00 00 00 00 00 20 8A 00 00 00 00 01 00 00 00 00 00 20 8A 00 00 00 00 00 03 A9 80 00 00 00 01 00 00 06 8E 00 00 00 00 00 03 A9 80 00 00 00 01 00 00 41 89 00 00 00 00 00 20 3A 7E 00 00 20 8A 00 00 00 01 01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 77 00 00 00 00 01 00 00 06 8E 00 00 00 00 01 00 00 00 00 00 00 2B 00 00 00 32 00 00 20 8A 00 00 20 8A 00 00 00 01 00 00 00 00 00 02 08 92 00 00 20 8A 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00</action>
@@ -287,7 +286,7 @@
     <action instr="writeXbytes" len="258" addr="60" AddrIncr="4" ParamName="Page_A8960_S256_N37_idx35" DspName="IC 1">00 00 00 00 00 00 00 00 00 00 00 00 00 00 F3 B1 00 04 00 00 00 00 00 FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F4 01 00 04 00 00 00 00 00 02 00 00 00 01 00 00 00 00 00 00 00 00 00 00 F4 21 00 04 00 00 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00 00 00 00 F5 16 00 04 00 00 00 00 00 07 00 00 00 07 00 00 00 0C 00 00 07 71 00 00 F5 1D 00 04 00 00 00 00 00 07 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F5 26 00 04 00 00 00 00 00 01 00 00 00 01 00 00 00 01 00 00 00 00 00 00 F5 2D 00 04 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F5 81 00 04 00 00 00 00 07 FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F6 04 00 04 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F6 90 00 04 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F6 DB</action>
     <action instr="writeXbytes" len="6" addr="53" AddrIncr="0" ParamName="g_PageSize" DspName="IC 1">00 00 01 00</action>
     <action instr="writeXbytes" len="6" addr="54" AddrIncr="0" ParamName="g_PageAddress" DspName="IC 1">00 00 24 00</action>
-    <action instr="writeXbytes" len="258" addr="60" AddrIncr="4" ParamName="Page_A9216_S256_N37_idx36" DspName="IC 1">00 04 00 00 00 00 FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F6 EA 00 04 00 00 00 00 FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F6 F9 00 04 00 00 00 00 FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F7 08 00 04 00 00 00 00 FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F7 17 00 04 00 00 00 00 FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F7 80 00 04 00 00 00 00 00 1F 00 00 00 18 00 00 00 18 00 00 00 18 00 00 F7 8F 00 04 00 00 00 00 00 1F 00 00 00 18 00 00 00 18 00 00 00 18 80 00 F7 94 00 10 00 00 00 00 00 18 00 00 00 18 00 00 00 18 00 00 00 18 00 00 00 18 00 00 00 0A 00 00 00 08 00 00 00 08 00 00 00 08 00 00 00 18 00 00 00 1F 00 00 00 0F 00 00 00 0F 00 00 00 18 00 00 00 18 00 00 00 1F 00 00 01 51 B9 E9 CC 7F 00 00 00 00 00 00 00 00 00 00 00 00</action>
+    <action instr="writeXbytes" len="258" addr="60" AddrIncr="4" ParamName="Page_A9216_S256_N37_idx36" DspName="IC 1">00 04 00 00 00 00 FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F6 EA 00 04 00 00 00 00 FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F6 F9 00 04 00 00 00 00 FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F7 08 00 04 00 00 00 00 FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F7 17 00 04 00 00 00 00 FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F7 80 00 04 00 00 00 00 00 1F 00 00 00 18 00 00 00 18 00 00 00 18 00 00 F7 8F 00 04 00 00 00 00 00 1F 00 00 00 18 00 00 00 18 00 00 00 18 80 00 F7 94 00 10 00 00 00 00 00 18 00 00 00 18 00 00 00 18 00 00 00 18 00 00 00 18 00 00 00 0A 00 00 00 08 00 00 00 08 00 00 00 08 00 00 00 18 00 00 00 1F 00 00 00 0F 00 00 00 0F 00 00 00 18 00 00 00 18 00 00 00 1F 00 00 01 51 B8 27 CC 11 00 00 00 00 00 00 00 00 00 00 00 00</action>
     <action instr="writeXbytes" len="6" addr="53" AddrIncr="0" ParamName="g_PageSize" DspName="IC 1">00 00 01 00</action>
     <action instr="writeXbytes" len="4" addr="62464" AddrIncr="0" ParamName="IC 1.HIBERNATE" DspName="IC 1">00 01</action>
     <action instr="delay" ParamName="IC 1.Hibernate Delay" DspName="IC 1">00 FF</action>
@@ -306,7 +305,6 @@
     <action instr="writeXbytes" len="4" addr="62467" AddrIncr="0" ParamName="IC 1.KILL_CORE" DspName="IC 1">00 01</action>
     <action instr="writeXbytes" len="4" addr="62849" AddrIncr="0" ParamName="IC 1.ASRC_MUTE" DspName="IC 1">07 FF</action>
     <action instr="writeXbytes" len="4" addr="62497" AddrIncr="0" ParamName="IC 1.PANIC_CLEAR" DspName="IC 1">00 01</action>
-    <action instr="writeXbytes" len="4" addr="62498" AddrIncr="0" ParamName="IC 1.PANIC_PARITY_MASK" DspName="IC 1">00 03</action>
     <action instr="writeXbytes" len="4" addr="62220" AddrIncr="0" ParamName="IC 1.FTDM_IN12" DspName="IC 1">00 FF</action>
     <action instr="writeXbytes" len="4" addr="62235" AddrIncr="0" ParamName="IC 1.FTDM_IN27" DspName="IC 1">00 FF</action>
     <action instr="writeXbytes" len="4" addr="62250" AddrIncr="0" ParamName="IC 1.FTDM_IN42" DspName="IC 1">00 FF</action>
