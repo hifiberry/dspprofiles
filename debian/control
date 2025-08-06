@@ -12,4 +12,5 @@ Depends: ${misc:Depends}, python3
 Description: HiFiBerry DSP audio profiles
  Audio processing profiles for HiFiBerry DSP-enabled sound cards.
  Contains configuration files for Beocreate, DAC+DSP, and DSP Add-on boards.
+ Includes DSP Add-on v14 and v15 profiles for different sample rates.
  Includes parse_sigmastudio_params utility for generating DSP metadata from SigmaStudio parameter files.

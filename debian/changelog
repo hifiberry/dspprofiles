@@ -1,3 +1,11 @@
+hifiberry-dspprofiles (1.1.0) unstable; urgency=medium
+
+  * Added DSP Add-on v15 profile (dsp-addon-96-15.xml)
+  * Added parse_sigmastudio_params utility for generating DSP metadata
+  * Moved metadata generation tools to metadata-generator directory
+
+ -- HiFiBerry <support@hifiberry.com>  Tue, 06 Aug 2025 15:00:00 +0000
+
 hifiberry-dspprofiles (1.0.0) unstable; urgency=medium
 
   * Initial release
