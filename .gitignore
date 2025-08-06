@@ -6,3 +6,4 @@
 **/*NetList.xml
 **/*_IC *
 test_metadata.xml
+__pycache__/*
