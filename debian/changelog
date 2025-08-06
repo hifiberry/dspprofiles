@@ -1,0 +1,6 @@
+hifiberry-dspprofiles (1.0.0) unstable; urgency=medium
+
+  * Initial release
+  * Added DSP profiles for Beocreate, DAC+DSP, and DSP Add-on
+
+ -- HiFiBerry <support@hifiberry.com>  Wed, 06 Aug 2025 00:00:00 +0000

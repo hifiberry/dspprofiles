@@ -1,0 +1,14 @@
+Source: hifiberry-dspprofiles
+Section: misc
+Priority: optional
+Maintainer: HiFiBerry <support@hifiberry.com>
+Build-Depends: debhelper (>= 10)
+Standards-Version: 4.1.2
+Homepage: https://www.hifiberry.com
+
+Package: hifiberry-dspprofiles
+Architecture: all
+Depends: ${misc:Depends}
+Description: HiFiBerry DSP audio profiles
+ Audio processing profiles for HiFiBerry DSP-enabled sound cards.
+ Contains configuration files for Beocreate, DAC+DSP, and DSP Add-on boards.

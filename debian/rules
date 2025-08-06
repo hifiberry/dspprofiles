@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	# No build step needed for data files
+
+override_dh_auto_install:
+	install -d $(CURDIR)/debian/hifiberry-dspprofiles/usr/share/hifiberry/dspprofiles
+	install -m 644 beocreate/beocreate-universal-11.xml $(CURDIR)/debian/hifiberry-dspprofiles/usr/share/hifiberry/dspprofiles/
+	install -m 644 dac+dsp/dacdsp-15.xml $(CURDIR)/debian/hifiberry-dspprofiles/usr/share/hifiberry/dspprofiles/
+	install -m 644 dspaddon/dsp-addon-96-14.xml $(CURDIR)/debian/hifiberry-dspprofiles/usr/share/hifiberry/dspprofiles/
