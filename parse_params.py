@@ -218,7 +218,7 @@ class DSPParamsParser:
         except Exception as e:
             print(f"Error saving to CSV: {e}")
     
-    def save_to_xml(self, output_path: str = None, card_type: str = None, version: str = None):
+    def save_to_xml(self, output_path: str = None, card_type: str = None, version: str = None, samplerate: int = 48000):
         """Save parsed parameters to an XML metadata file or print to stdout"""
         # Mapping dictionary from cell/parameter patterns to XML metadata types
         param_mapping = {
@@ -301,12 +301,16 @@ class DSPParamsParser:
                 'comment': 'Read daisy chain slave status - need to find in .params'
             },
             'sensitivitySPDIFRegister': {
-                'search_pattern': 'sensitivitySPDIF',
-                'comment': 'SPDIF sensitivity - need to find in .params'
+                'pattern': ('Input Detection.SPDIFDetect', 'SignalDetectAlgS3002threshold'),
+                'comment': 'SPDIF sensitivity threshold'
             },
             'enableSPDIFRegister': {
-                'search_pattern': 'enableSPDIF',
-                'comment': 'Enable SPDIF - need to find in .params'
+                'pattern': ('Input Detection.SPDIFOn', 'SwitchAlg321ison'),
+                'comment': 'Enable SPDIF switch'
+            },
+            'volumeLimitRegister': {
+                'pattern': ('VolumeLimitPi', 'HWGainADAU145XAlg6target'),
+                'comment': 'Volume limit register (same as Pi limit)'
             },
             'tuningForkPitchRegister': {
                 'search_pattern': 'tuningForkPitch',
@@ -357,30 +361,22 @@ class DSPParamsParser:
                 'filter_bank': True,
                 'comment': 'Custom filter bank for right channel (room compensation)'
             },
-            # Level registers - need to find specific target parameters
+            # Level registers - now with specific mappings found in dsp-addon-96-14.params
             'levelsARegister': {
-                'cell_pattern': 'Levels',
-                'param_pattern': 'HWGainADAU145XAlg.*target',
-                'channel': 'A',
-                'comment': 'Level control for channel A - need to identify specific parameter'
+                'pattern': ('Levels', 'HWGainADAU145XAlg4target'),
+                'comment': 'Level control for channel A'
             },
             'levelsBRegister': {
-                'cell_pattern': 'Levels', 
-                'param_pattern': 'HWGainADAU145XAlg.*target',
-                'channel': 'B',
-                'comment': 'Level control for channel B - need to identify specific parameter'
+                'pattern': ('Levels', 'HWGainADAU145XAlg3target'),
+                'comment': 'Level control for channel B'
             },
             'levelsCRegister': {
-                'cell_pattern': 'Levels',
-                'param_pattern': 'HWGainADAU145XAlg.*target', 
-                'channel': 'C',
-                'comment': 'Level control for channel C - need to identify specific parameter'
+                'pattern': ('Levels', 'HWGainADAU145XAlg2target'),
+                'comment': 'Level control for channel C'
             },
             'levelsDRegister': {
-                'cell_pattern': 'Levels',
-                'param_pattern': 'HWGainADAU145XAlg.*target',
-                'channel': 'D', 
-                'comment': 'Level control for channel D - need to identify specific parameter'
+                'pattern': ('Levels', 'HWGainADAU145XAlg1target'),
+                'comment': 'Level control for channel D'
             }
         }
         
@@ -415,10 +411,6 @@ class DSPParamsParser:
                         # For now, return None to indicate it needs manual mapping
                         pass
                 return None  # TODO: Implement better search logic
-            elif 'cell_pattern' in mapping_info:
-                # For level registers, try to find the right parameter
-                # This is a placeholder - would need more analysis to map correctly
-                return "UNKNOWN"  # TODO: Map level registers properly
             return None
         
         # Build the XML content with actual parameter values
@@ -464,7 +456,10 @@ class DSPParamsParser:
             profile_version = version or '0'
         
         xml_lines = [
-            '                <metadata type="sampleRate">48000</metadata>',
+            '<?xml version="1.0" standalone="no"?>',
+            '<ROM IC="ADAU1451" IC_Address="1" Address_byte_length="2">',
+            '<beometa>',
+            f'                <metadata type="sampleRate">{samplerate}</metadata>',
             f'                <metadata type="profileName">{profile_name}</metadata>',
             f'                <metadata type="profileVersion">{profile_version}</metadata>',
             f'                <metadata type="programID">{program_id}</metadata>',
@@ -523,6 +518,12 @@ class DSPParamsParser:
             else:
                 # Add comment for unmapped parameters
                 xml_lines.append(f'                <!-- {xml_type}: {mapping_info["comment"]} - NOT MAPPED -->')
+        
+        # Close the beometa and ROM tags
+        xml_lines.extend([
+            '</beometa>',
+            '</ROM>'
+        ])
         
         xml_content = '\n'.join(xml_lines)
         
@@ -627,6 +628,8 @@ def main():
     parser.add_argument('--card', choices=['beocreate', 'dacdsp', 'dspaddon'], 
                        help='Card type for XML metadata generation (beocreate, dacdsp, dspaddon)')
     parser.add_argument('--version', help='Version number for the profile')
+    parser.add_argument('--samplerate', type=int, default=48000, 
+                       help='Sample rate for the profile (default: 48000)')
     
     args = parser.parse_args()
     
@@ -647,7 +650,7 @@ def main():
     
     # Handle XML output
     if args.xml:
-        dsp_parser.save_to_xml(args.output, args.card, args.version)
+        dsp_parser.save_to_xml(args.output, args.card, args.version, args.samplerate)
         if not args.quiet and args.output:
             print(f"\nXML metadata generated and saved to {args.output}")
         return
