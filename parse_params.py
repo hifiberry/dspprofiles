@@ -236,7 +236,7 @@ class DSPParamsParser:
                 <metadata type="spdifTXUserDataL5" storable="yes">63172</metadata>
                 <metadata type="spdifTXUserDataR0" storable="yes">63173</metadata>
                 <metadata type="spdifTXUserDataR1" storable="yes">63185</metadata>
-                <!-- Additional metadata entries -->
+                <!-- DSP parameters from .params -->
                 <metadata type="readIsDaisyChainSlaveRegister">98</metadata>
                 <metadata type="canBecomeDaisyChainSlaveRegister">4833</metadata>
                 <metadata type="muteRegister">4834</metadata>
