@@ -1,0 +1,124 @@
+.TH PARSE_SIGMASTUDIO_PARAMS 1 "August 2025" "HiFiBerry DSP Profiles" "User Commands"
+.SH NAME
+parse_sigmastudio_params \- SigmaStudio DSP parameter file parser and XML metadata generator
+.SH SYNOPSIS
+.B parse_sigmastudio_params
+[\fIOPTIONS\fR] \fIinput_file\fR
+.SH DESCRIPTION
+.B parse_sigmastudio_params
+is a utility for parsing SigmaStudio DSP .params files and extracting cell names, parameter names, and parameter addresses from DSP configuration files. It can output the data in various formats including CSV and XML metadata suitable for HiFiBerry DSP audio profiles.
+.PP
+The tool supports parsing parameter files from HiFiBerry DSP-enabled sound cards including Beocreate, DAC+DSP, and DSP Add-on boards, and can generate XML metadata files compatible with the HiFiBerry DSP ecosystem.
+.SH OPTIONS
+.TP
+.BR \-h ", " \-\-help
+Show help message and exit.
+.TP
+.BR \-o " \fIFILE\fR, " \-\-output " \fIFILE\fR"
+Output file path. If not specified, output goes to stdout (for XML) or console display (for other formats).
+.TP
+.BR \-c " \fICELL\fR, " \-\-cell " \fICELL\fR"
+Filter by specific cell name. Only show parameters for the specified cell.
+.TP
+.BR \-q ", " \-\-quiet
+Suppress console output. Only save to file if \-\-output is specified.
+.TP
+.BR \-\-address\-lists
+Group parameters by cell and show address lists instead of individual parameters. Each cell will display all its parameter addresses as a comma-separated list.
+.TP
+.BR \-\-address\-range
+Group parameters by cell and show address ranges [min, max] instead of individual parameters. Shows the span of addresses used by each cell.
+.TP
+.BR \-\-xml
+Output XML metadata format instead of CSV. Generates XML suitable for HiFiBerry DSP profile definitions.
+.TP
+.BR \-\-card " \fITYPE\fR"
+Card type for XML metadata generation. Valid values are:
+.RS
+.IP \(bu 2
+.B beocreate
+\- Beocreate 4-Channel Amplifier
+.IP \(bu 2
+.B dacdsp
+\- DAC+ DSP
+.IP \(bu 2
+.B dspaddon
+\- DSP Add-on
+.RE
+.TP
+.BR \-\-version " \fIVERSION\fR"
+Version number for the profile. Used in XML metadata generation.
+.TP
+.BR \-\-samplerate " \fIRATE\fR"
+Sample rate for the profile in Hz (default: 48000). Used in XML metadata generation.
+.SH EXAMPLES
+.TP
+Parse a .params file and display all parameters:
+.B parse_sigmastudio_params dsp-addon-v15.params
+.TP
+Export parameters to CSV:
+.B parse_sigmastudio_params dsp-addon-v15.params \-o output.csv
+.TP
+Show address ranges for all cells:
+.B parse_sigmastudio_params dsp-addon-v15.params \-\-address\-range
+.TP
+Generate XML metadata for a DSP add-on card:
+.B parse_sigmastudio_params dsp-addon-v15.params \-\-xml \-\-card dspaddon \-\-version 15 \-o metadata.xml
+.TP
+Generate XML with custom sample rate:
+.B parse_sigmastudio_params dsp-addon-v15.params \-\-xml \-\-card dacdsp \-\-samplerate 96000
+.TP
+Filter parameters for a specific cell:
+.B parse_sigmastudio_params dsp-addon-v15.params \-\-cell "Loudspeaker EQ.IIR_A"
+.SH FILE FORMATS
+.SS Input Format
+The input file should be a SigmaStudio DSP .params file containing parameter definitions in the following format:
+.PP
+.nf
+Cell Name = CellName
+Parameter Name = ParameterName  
+Parameter Address = 12345
+.fi
+.PP
+Parameters are separated by blank lines, and each parameter block contains these three fields.
+.SS CSV Output Format
+When outputting to CSV (default mode), the following columns are included:
+.IP \(bu 2
+.B cell_name
+\- The name of the DSP cell
+.IP \(bu 2
+.B parameter_name
+\- The name of the parameter within the cell
+.IP \(bu 2
+.B parameter_address
+\- The memory address of the parameter
+.SS XML Output Format
+XML output generates metadata suitable for HiFiBerry DSP profiles, including:
+.IP \(bu 2
+Sample rate configuration
+.IP \(bu 2
+Profile name and version
+.IP \(bu 2
+Model identification
+.IP \(bu 2
+Parameter address mappings
+.IP \(bu 2
+Filter bank definitions
+.SH EXIT STATUS
+.TP
+.B 0
+Success
+.TP
+.B 1
+Error (file not found, parsing error, conflicting arguments, etc.)
+.SH FILES
+.TP
+.I /usr/share/hifiberry/dspprofiles/
+Directory containing HiFiBerry DSP profile XML files.
+.SH AUTHOR
+HiFiBerry <support@hifiberry.com>
+.SH SEE ALSO
+.BR alsactl (1),
+.BR amixer (1)
+.PP
+HiFiBerry documentation: https://www.hifiberry.com/docs/

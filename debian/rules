@@ -11,3 +11,7 @@ override_dh_auto_install:
 	install -m 644 beocreate/beocreate-universal-11.xml $(CURDIR)/debian/hifiberry-dspprofiles/usr/share/hifiberry/dspprofiles/
 	install -m 644 dac+dsp/dacdsp-15.xml $(CURDIR)/debian/hifiberry-dspprofiles/usr/share/hifiberry/dspprofiles/
 	install -m 644 dspaddon/dsp-addon-96-14.xml $(CURDIR)/debian/hifiberry-dspprofiles/usr/share/hifiberry/dspprofiles/
+	install -d $(CURDIR)/debian/hifiberry-dspprofiles/usr/bin
+	install -m 755 metadata-generator/parse_params.py $(CURDIR)/debian/hifiberry-dspprofiles/usr/bin/parse_sigmastudio_params
+	install -d $(CURDIR)/debian/hifiberry-dspprofiles/usr/share/man/man1
+	install -m 644 debian/manpages/parse_sigmastudio_params.1 $(CURDIR)/debian/hifiberry-dspprofiles/usr/share/man/man1/
