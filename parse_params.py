@@ -220,62 +220,270 @@ class DSPParamsParser:
     
     def save_to_xml(self, output_path: str):
         """Save parsed parameters to an XML metadata file"""
-        xml_content = '''                
-                <metadata type="sampleRate">48000</metadata>
-                <metadata type="profileName">NAME</metadata>
-                <metadata type="profileVersion">0</metadata>
-                <metadata type="programID">NAME</metadata>
-                <metadata type="modelName" modelID="NAME">NAME</metadata>
-                <metadata type="checksum">CHECKSUM</metadata>
-                <metadata type="spdifTXUserDataSource" storable="yes">63135</metadata>
-                <metadata type="spdifTXUserDataL0" storable="yes">63135</metadata>
-                <metadata type="spdifTXUserDataL1" storable="yes">63168</metadata>
-                <metadata type="spdifTXUserDataL2" storable="yes">63169</metadata>
-                <metadata type="spdifTXUserDataL3" storable="yes">63170</metadata>
-                <metadata type="spdifTXUserDataL4" storable="yes">63171</metadata>
-                <metadata type="spdifTXUserDataL5" storable="yes">63172</metadata>
-                <metadata type="spdifTXUserDataR0" storable="yes">63173</metadata>
-                <metadata type="spdifTXUserDataR1" storable="yes">63185</metadata>
-                <!-- DSP parameters from .params -->
-                <metadata type="readIsDaisyChainSlaveRegister">98</metadata>
-                <metadata type="canBecomeDaisyChainSlaveRegister">4833</metadata>
-                <metadata type="muteRegister">4834</metadata>
-                <metadata type="muteInvertRegister" storable="yes">4856</metadata>
-                <metadata type="enableSPDIFTransmitterRegister">4835</metadata>
-                <metadata type="disableSPDIFTransmitterAtMuteRegister">4836</metadata>
-                <metadata type="sensitivitySPDIFRegister">86</metadata>
-                <metadata type="enableSPDIFRegister" storable="yes">4841</metadata>
-                <metadata type="readSPDIFOnRegister">93</metadata>
-                <metadata type="tuningForkPitchRegister">29</metadata>
-                <metadata type="tuningForkOnRegister">25</metadata>
-                <metadata type="customFilterRegisterBankLeft" storable="yes">329/80</metadata>
-                <metadata type="customFilterRegisterBankRight" storable="yes">249/80</metadata>
-                <metadata type="toneControlRightRegisters" storable="yes">108/70</metadata>
-                <metadata type="toneControlLeftRegisters" storable="yes">179/70</metadata>
-                <metadata type="channelSelectDRegister" channels="left,right,mono,side" multiplier="1" storable="yes">4860</metadata>
-                <metadata type="channelSelectCRegister" channels="left,right,mono,side" multiplier="1" storable="yes">4863</metadata>
-                <metadata type="channelSelectBRegister" channels="left,right,mono,side" multiplier="1" storable="yes">4862</metadata>
-                <metadata type="channelSelectARegister" channels="left,right,mono,side" multiplier="1" storable="yes">4861</metadata>
-                <metadata type="invertDRegister" storable="yes">4864</metadata>
-                <metadata type="invertCRegister" storable="yes">4865</metadata>
-                <metadata type="invertBRegister" storable="yes">4866</metadata>
-                <metadata type="invertARegister" storable="yes">4867</metadata>
-                <metadata type="IIR_D" storable="yes">451/80</metadata>
-                <metadata type="IIR_C" storable="yes">531/80</metadata>
-                <metadata type="IIR_B" storable="yes">611/80</metadata>
-                <metadata type="IIR_A" storable="yes">691/80</metadata>
-                <metadata type="levelsARegister" storable="yes">781</metadata>
-                <metadata type="levelsBRegister" storable="yes">778</metadata>
-                <metadata type="levelsCRegister" storable="yes">775</metadata>
-                <metadata type="levelsDRegister" storable="yes">772</metadata>
-                <metadata type="volumeControlRegister" storable="yes">106</metadata>
-                <metadata type="volumeLimitRegister">74</metadata>
-                <metadata type="volumeLimitPiRegister" storable="yes">74</metadata>
-                <metadata type="volumeLimitSPDIFRegister" storable="yes">77</metadata>
-                <metadata type="delayARegister" maxDelay="2000" storable="yes">786</metadata>
-                <metadata type="delayDRegister" maxDelay="2000" storable="yes">783</metadata>
-                <metadata type="delayCRegister" maxDelay="2000" storable="yes">784</metadata>
-                <metadata type="delayBRegister" maxDelay="2000" storable="yes">785</metadata>'''
+        # Mapping dictionary from cell/parameter patterns to XML metadata types
+        param_mapping = {
+            # Direct address mappings
+            'balanceRegister': {
+                'pattern': ('L-R Balance.Balance', 'DCInpAlg145X11value'),
+                'comment': 'L-R Balance control'
+            },
+            'muteInvertRegister': {
+                'pattern': ('Soft Mute', 'ExternalGainAlgSlew145X1slew_mode'),
+                'comment': 'Soft mute invert control'
+            },
+            'volumeControlRegister': {
+                'pattern': ('MasterVol', 'HWGainADAU145XAlg5target'),
+                'comment': 'Master volume control'
+            },
+            'volumeLimitPiRegister': {
+                'pattern': ('VolumeLimitPi', 'HWGainADAU145XAlg6target'),
+                'comment': 'Volume limit for Pi input'
+            },
+            'volumeLimitSPDIFRegister': {
+                'pattern': ('VolumeLimitSPDIF', 'HWGainADAU145XAlg7target'),
+                'comment': 'Volume limit for SPDIF input'
+            },
+            'readSPDIFOnRegister': {
+                'pattern': ('Input Detection.SPDIF on read', 'ReadBackAlgNewSigma3001Value'),
+                'comment': 'Read SPDIF on status'
+            },
+            'channelSelectARegister': {
+                'pattern': ('Channel Select.Ch_A', 'monomuxSigma300ns4index'),
+                'comment': 'Channel A selection'
+            },
+            'channelSelectBRegister': {
+                'pattern': ('Channel Select.Ch_B', 'monomuxSigma300ns3index'),
+                'comment': 'Channel B selection'
+            },
+            'channelSelectCRegister': {
+                'pattern': ('Channel Select.Ch_C', 'monomuxSigma300ns2index'),
+                'comment': 'Channel C selection'
+            },
+            'channelSelectDRegister': {
+                'pattern': ('Channel Select.Ch_D', 'monomuxSigma300ns1index'),
+                'comment': 'Channel D selection'
+            },
+            'invertARegister': {
+                'pattern': ('Loudspeaker EQ.Invert_A', 'EQS300Invert4invert'),
+                'comment': 'Invert channel A'
+            },
+            'invertBRegister': {
+                'pattern': ('Loudspeaker EQ.Invert_B', 'EQS300Invert3invert'),
+                'comment': 'Invert channel B'
+            },
+            'invertCRegister': {
+                'pattern': ('Loudspeaker EQ.Invert_C', 'EQS300Invert2invert'),
+                'comment': 'Invert channel C'
+            },
+            'invertDRegister': {
+                'pattern': ('Loudspeaker EQ.Invert_D', 'EQS300Invert1invert'),
+                'comment': 'Invert channel D'
+            },
+            'delayARegister': {
+                'pattern': ('Delay_A', 'DelaySigma300Alg1delay'),
+                'comment': 'Delay for channel A'
+            },
+            'delayBRegister': {
+                'pattern': ('Delay_B', 'DelaySigma300Alg4delay'),
+                'comment': 'Delay for channel B'
+            },
+            'delayCRegister': {
+                'pattern': ('Delay_C', 'DelaySigma300Alg3delay'),
+                'comment': 'Delay for channel C'
+            },
+            'delayDRegister': {
+                'pattern': ('Delay_D', 'DelaySigma300Alg2delay'),
+                'comment': 'Delay for channel D'
+            },
+            # Dynamic registers that need to be found in .params (addresses < 10000)
+            'readIsDaisyChainSlaveRegister': {
+                'search_pattern': 'readIsDaisyChainSlave',
+                'comment': 'Read daisy chain slave status - need to find in .params'
+            },
+            'sensitivitySPDIFRegister': {
+                'search_pattern': 'sensitivitySPDIF',
+                'comment': 'SPDIF sensitivity - need to find in .params'
+            },
+            'enableSPDIFRegister': {
+                'search_pattern': 'enableSPDIF',
+                'comment': 'Enable SPDIF - need to find in .params'
+            },
+            'tuningForkPitchRegister': {
+                'search_pattern': 'tuningForkPitch',
+                'comment': 'Tuning fork pitch - need to find in .params'
+            },
+            'tuningForkOnRegister': {
+                'search_pattern': 'tuningForkOn',
+                'comment': 'Tuning fork on - need to find in .params'
+            },
+            # Filter bank mappings (startaddress/length format)
+            'IIR_A': {
+                'cell_name': 'Loudspeaker EQ.IIR_A',
+                'filter_bank': True,
+                'comment': 'IIR filter bank for channel A'
+            },
+            'IIR_B': {
+                'cell_name': 'Loudspeaker EQ.IIR_B',
+                'filter_bank': True,
+                'comment': 'IIR filter bank for channel B'
+            },
+            'IIR_C': {
+                'cell_name': 'Loudspeaker EQ.IIR_C',
+                'filter_bank': True,
+                'comment': 'IIR filter bank for channel C'
+            },
+            'IIR_D': {
+                'cell_name': 'Loudspeaker EQ.IIR_D',
+                'filter_bank': True,
+                'comment': 'IIR filter bank for channel D'
+            },
+            'toneControlLeftRegisters': {
+                'cell_name': 'Tone Controls.ToneControl_L',
+                'filter_bank': True,
+                'comment': 'Tone control filter bank for left channel'
+            },
+            'toneControlRightRegisters': {
+                'cell_name': 'Tone Controls.ToneControl_R',
+                'filter_bank': True,
+                'comment': 'Tone control filter bank for right channel'
+            },
+            'customFilterRegisterBankLeft': {
+                'cell_name': 'Room Compensation.IIR_L',
+                'filter_bank': True,
+                'comment': 'Custom filter bank for left channel (room compensation)'
+            },
+            'customFilterRegisterBankRight': {
+                'cell_name': 'Room Compensation.IIR_R',
+                'filter_bank': True,
+                'comment': 'Custom filter bank for right channel (room compensation)'
+            },
+            # Level registers - need to find specific target parameters
+            'levelsARegister': {
+                'cell_pattern': 'Levels',
+                'param_pattern': 'HWGainADAU145XAlg.*target',
+                'channel': 'A',
+                'comment': 'Level control for channel A - need to identify specific parameter'
+            },
+            'levelsBRegister': {
+                'cell_pattern': 'Levels', 
+                'param_pattern': 'HWGainADAU145XAlg.*target',
+                'channel': 'B',
+                'comment': 'Level control for channel B - need to identify specific parameter'
+            },
+            'levelsCRegister': {
+                'cell_pattern': 'Levels',
+                'param_pattern': 'HWGainADAU145XAlg.*target', 
+                'channel': 'C',
+                'comment': 'Level control for channel C - need to identify specific parameter'
+            },
+            'levelsDRegister': {
+                'cell_pattern': 'Levels',
+                'param_pattern': 'HWGainADAU145XAlg.*target',
+                'channel': 'D', 
+                'comment': 'Level control for channel D - need to identify specific parameter'
+            }
+        }
+        
+        # Create a lookup table for quick parameter access
+        param_lookup = {}
+        cell_ranges = self.get_cells_with_address_ranges()
+        
+        for param in self.parameters:
+            key = (param['cell_name'], param['parameter_name'])
+            param_lookup[key] = param['parameter_address']
+        
+        # Helper function to find parameter address
+        def get_param_address(xml_type, mapping_info):
+            if 'pattern' in mapping_info:
+                cell_name, param_name = mapping_info['pattern']
+                return param_lookup.get((cell_name, param_name))
+            elif 'filter_bank' in mapping_info:
+                cell_name = mapping_info['cell_name']
+                if cell_name in cell_ranges:
+                    range_info = cell_ranges[cell_name]
+                    start_addr = range_info['min_address']
+                    count = range_info['count']
+                    return f"{start_addr}/{count}"
+            elif 'search_pattern' in mapping_info:
+                # Search for parameters that might match the pattern
+                search_pattern = mapping_info['search_pattern'].lower()
+                for param in self.parameters:
+                    cell_name = param['cell_name'].lower()
+                    param_name = param['parameter_name'].lower()
+                    if search_pattern in cell_name or search_pattern in param_name:
+                        # Found a potential match, but we need better logic here
+                        # For now, return None to indicate it needs manual mapping
+                        pass
+                return None  # TODO: Implement better search logic
+            elif 'cell_pattern' in mapping_info:
+                # For level registers, try to find the right parameter
+                # This is a placeholder - would need more analysis to map correctly
+                return "UNKNOWN"  # TODO: Map level registers properly
+            return None
+        
+        # Build the XML content with actual parameter values
+        xml_lines = [
+            '                <metadata type="sampleRate">48000</metadata>',
+            '                <metadata type="profileName">NAME</metadata>',
+            '                <metadata type="profileVersion">0</metadata>',
+            '                <metadata type="programID">NAME</metadata>',
+            '                <metadata type="modelName" modelID="NAME">NAME</metadata>',
+            '                <metadata type="checksum">CHECKSUM</metadata>',
+            '                <metadata type="spdifTXUserDataSource" storable="yes">63135</metadata>',
+            '                <metadata type="spdifTXUserDataL0" storable="yes">63135</metadata>',
+            '                <metadata type="spdifTXUserDataL1" storable="yes">63168</metadata>',
+            '                <metadata type="spdifTXUserDataL2" storable="yes">63169</metadata>',
+            '                <metadata type="spdifTXUserDataL3" storable="yes">63170</metadata>',
+            '                <metadata type="spdifTXUserDataL4" storable="yes">63171</metadata>',
+            '                <metadata type="spdifTXUserDataL5" storable="yes">63172</metadata>',
+            '                <metadata type="spdifTXUserDataR0" storable="yes">63173</metadata>',
+            '                <metadata type="spdifTXUserDataR1" storable="yes">63185</metadata>',
+            '                <!-- DSP parameters from .params file -->'
+        ]
+        
+        # Add parameters that don't have direct mappings (static values for addresses >= 10000 only)
+        static_params = [
+            ('canBecomeDaisyChainSlaveRegister', '4833'),  # This should be found in .params if < 10000
+            ('muteRegister', '4834'),  # This should be found in .params if < 10000
+            ('enableSPDIFTransmitterRegister', '4835'),  # This should be found in .params if < 10000
+            ('disableSPDIFTransmitterAtMuteRegister', '4836'),  # This should be found in .params if < 10000
+            # Only include addresses >= 10000 as truly static
+            # Addresses < 10000 should come from .params file
+        ]
+        
+        for param_info in static_params:
+            param_type = param_info[0]
+            param_value = param_info[1]
+            extra_attrs = param_info[2] if len(param_info) > 2 else ''
+            if extra_attrs:
+                xml_lines.append(f'                <metadata type="{param_type}" {extra_attrs}>{param_value}</metadata>')
+            else:
+                xml_lines.append(f'                <metadata type="{param_type}">{param_value}</metadata>')
+        
+        # Add mapped parameters from .params file
+        for xml_type, mapping_info in param_mapping.items():
+            address = get_param_address(xml_type, mapping_info)
+            if address is not None:
+                # Determine attributes based on parameter type
+                if xml_type.startswith('channelSelect'):
+                    attrs = 'channels="left,right,mono,side" multiplier="1" storable="yes"'
+                elif xml_type.startswith('delay'):
+                    attrs = 'maxDelay="2000" storable="yes"'
+                elif xml_type in ['volumeControlRegister', 'volumeLimitPiRegister', 'volumeLimitSPDIFRegister', 
+                                 'balanceRegister', 'muteInvertRegister', 'enableSPDIFRegister'] or xml_type.startswith('invert') or xml_type.startswith('levels') or 'Filter' in xml_type or xml_type.startswith('IIR_') or 'toneControl' in xml_type:
+                    attrs = 'storable="yes"'
+                else:
+                    attrs = ''
+                
+                if attrs:
+                    xml_lines.append(f'                <metadata type="{xml_type}" {attrs}>{address}</metadata>')
+                else:
+                    xml_lines.append(f'                <metadata type="{xml_type}">{address}</metadata>')
+            else:
+                # Add comment for unmapped parameters
+                xml_lines.append(f'                <!-- {xml_type}: {mapping_info["comment"]} - NOT MAPPED -->')
+        
+        xml_content = '\n'.join(xml_lines)
         
         try:
             with open(output_path, 'w', encoding='utf-8') as xmlfile:
