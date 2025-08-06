@@ -218,8 +218,8 @@ class DSPParamsParser:
         except Exception as e:
             print(f"Error saving to CSV: {e}")
     
-    def save_to_xml(self, output_path: str):
-        """Save parsed parameters to an XML metadata file"""
+    def save_to_xml(self, output_path: str = None, card_type: str = None, version: str = None):
+        """Save parsed parameters to an XML metadata file or print to stdout"""
         # Mapping dictionary from cell/parameter patterns to XML metadata types
         param_mapping = {
             # Direct address mappings
@@ -422,12 +422,53 @@ class DSPParamsParser:
             return None
         
         # Build the XML content with actual parameter values
+        # Define card-specific metadata
+        card_metadata = {
+            'beocreate': {
+                'profileName': 'Beocreate Universal',
+                'programID': 'beocreate-universal',
+                'modelName': 'Beocreate 4-Channel Amplifier',
+                'modelID': 'beocreate-4ca-mk1',
+                'defaultVersion': '11'
+            },
+            'dacdsp': {
+                'profileName': 'DAC+ DSP Universal',
+                'programID': 'dacdsp-universal',
+                'modelName': 'DAC+ DSP',
+                'modelID': 'hifiberry-dacdsp',
+                'defaultVersion': '15'
+            },
+            'dspaddon': {
+                'profileName': 'DSP add-on',
+                'programID': 'dsp-addon',
+                'modelName': 'DSP add-on',
+                'modelID': 'dsp-addon',
+                'defaultVersion': '14'
+            }
+        }
+        
+        # Use provided card type or default to generic values
+        if card_type and card_type in card_metadata:
+            metadata = card_metadata[card_type]
+            profile_name = metadata['profileName']
+            program_id = metadata['programID']
+            model_name = metadata['modelName']
+            model_id = metadata['modelID']
+            profile_version = version or metadata['defaultVersion']
+        else:
+            # Generic defaults when card type not specified
+            profile_name = 'NAME'
+            program_id = 'NAME'
+            model_name = 'NAME'
+            model_id = 'NAME'
+            profile_version = version or '0'
+        
         xml_lines = [
             '                <metadata type="sampleRate">48000</metadata>',
-            '                <metadata type="profileName">NAME</metadata>',
-            '                <metadata type="profileVersion">0</metadata>',
-            '                <metadata type="programID">NAME</metadata>',
-            '                <metadata type="modelName" modelID="NAME">NAME</metadata>',
+            f'                <metadata type="profileName">{profile_name}</metadata>',
+            f'                <metadata type="profileVersion">{profile_version}</metadata>',
+            f'                <metadata type="programID">{program_id}</metadata>',
+            f'                <metadata type="modelName" modelID="{model_id}">{model_name}</metadata>',
             '                <metadata type="checksum">CHECKSUM</metadata>',
             '                <metadata type="spdifTXUserDataSource" storable="yes">63135</metadata>',
             '                <metadata type="spdifTXUserDataL0" storable="yes">63135</metadata>',
@@ -485,14 +526,18 @@ class DSPParamsParser:
         
         xml_content = '\n'.join(xml_lines)
         
-        try:
-            with open(output_path, 'w', encoding='utf-8') as xmlfile:
-                xmlfile.write(xml_content)
-                    
-            print(f"XML metadata saved to {output_path}")
-            
-        except Exception as e:
-            print(f"Error saving to XML: {e}")
+        if output_path:
+            try:
+                with open(output_path, 'w', encoding='utf-8') as xmlfile:
+                    xmlfile.write(xml_content)
+                        
+                print(f"XML metadata saved to {output_path}")
+                
+            except Exception as e:
+                print(f"Error saving to XML: {e}")
+        else:
+            # Print to stdout
+            print(xml_content)
     
     def save_to_csv(self, output_path: str):
         """Save parsed parameters to a CSV file"""
@@ -578,17 +623,16 @@ def main():
     parser.add_argument('--address-range', action='store_true',
                        help='Group parameters by cell and show address ranges [min, max] instead of individual parameters')
     parser.add_argument('--xml', action='store_true',
-                       help='Output XML metadata format instead of CSV (requires --output)')
+                       help='Output XML metadata format instead of CSV')
+    parser.add_argument('--card', choices=['beocreate', 'dacdsp', 'dspaddon'], 
+                       help='Card type for XML metadata generation (beocreate, dacdsp, dspaddon)')
+    parser.add_argument('--version', help='Version number for the profile')
     
     args = parser.parse_args()
     
     # Check for conflicting arguments
     if args.address_lists and args.address_range:
         print("Error: Cannot use both --address-lists and --address-range at the same time.")
-        return
-    
-    if args.xml and not args.output:
-        print("Error: --xml option requires --output to specify the output file.")
         return
     
     # Create parser instance and parse the file
@@ -603,8 +647,8 @@ def main():
     
     # Handle XML output
     if args.xml:
-        dsp_parser.save_to_xml(args.output)
-        if not args.quiet:
+        dsp_parser.save_to_xml(args.output, args.card, args.version)
+        if not args.quiet and args.output:
             print(f"\nXML metadata generated and saved to {args.output}")
         return
     
