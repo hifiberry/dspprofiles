@@ -5,3 +5,4 @@
 *.h
 **/*NetList.xml
 **/*_IC *
+test_metadata.xml
