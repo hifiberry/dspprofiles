@@ -35,7 +35,14 @@ rm -rf debian/.debhelper debian/hifiberry-dspprofiles debian/tmp debian/*.debhel
 
 # Build the package
 echo "Building package..."
-dpkg-buildpackage -us -uc -b
+sbuild \
+    --chroot-mode=unshare \
+    --no-clean-source \
+    --enable-network \
+    $DIST_ARG \
+    $CHROOT_ARG \
+    --build-dir="$BUILD_DIR" \
+    --verbose
 
 if [ $? -eq 0 ]; then
     echo ""
