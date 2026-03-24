@@ -33,28 +33,17 @@ echo "All required files found."
 echo "Cleaning previous build artifacts..."
 rm -rf debian/.debhelper debian/hifiberry-dspprofiles debian/tmp debian/*.debhelper* debian/*.substvars 2>/dev/null || true
 
-# Build the package
-echo "Building package..."
-sbuild \
-    --chroot-mode=unshare \
-    --no-clean-source \
-    --enable-network \
-    $DIST_ARG \
-    $CHROOT_ARG \
-    --build-dir="$BUILD_DIR" \
-    --verbose
-
-if [ $? -eq 0 ]; then
-    echo ""
-    echo "✅ Package built successfully!"
-    echo ""
-    echo "Generated files:"
-    ls -la ../hifiberry-dspprofiles_*.deb 2>/dev/null || echo "Package file not found in parent directory"
-    echo ""
-    echo "To install the package, run:"
-    echo "  sudo dpkg -i ../hifiberry-dspprofiles_*.deb"
-    echo ""
+# Check if DIST is set by environment variable
+if [ -n "$DIST" ]; then
+    echo "Using distribution from DIST environment variable: $DIST"
+    DIST_ARG="--dist=$DIST"
 else
-    echo "❌ Package build failed!"
-    exit 1
+    echo "No DIST environment variable set, using sbuild default"
+    DIST_ARG=""
 fi
+
+# Build the package
+echo "Building package with sbuild..."
+sbuild --chroot-mode=unshare \
+       --no-clean-source \
+       --enable-network $DIST_ARG
