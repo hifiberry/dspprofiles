@@ -1,3 +1,15 @@
+hifiberry-dspprofiles (1.1.1) unstable; urgency=medium
+
+  * Add length-based SHA-1 checksum (<metadata type="checksum_sha1">) to
+    every shipped profile, alongside the existing signature-based MD5.
+    Lets sigmatcpserver identify a running profile via either algorithm,
+    making the match resilient to either kind of accidental corruption.
+  * Add tools/enrich-checksums.py — flashes each profile to a live DSP,
+    reads the length SHA-1 from the running program, and writes it back
+    to the XML. Used to regenerate the new metadata when profiles change.
+
+ -- HiFiBerry <support@hifiberry.com>  Mon, 11 May 2026 11:00:00 +0000
+
 hifiberry-dspprofiles (1.1.0) unstable; urgency=medium
 
   * Added DSP Add-on v15 profile (dsp-addon-96-15.xml)

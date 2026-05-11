@@ -11,6 +11,7 @@
     <metadata type="modelName" modelID="dsp-addon">DSP add-on</metadata>
 
 	<metadata type="checksum">8799D19C863321CBF62CD665C92F9120</metadata>
+	<metadata type="checksum_sha1">F373DA37E204E6A3105D67E8F49A0A6D35AAF629</metadata>
 	<metadata type="balanceRegister" storable="yes">4740</metadata>
 	<metadata type="spdifTXUserDataSource" storable="yes">63135</metadata>
 	<metadata type="spdifTXUserDataL0" storable="yes">63135</metadata>

@@ -7,6 +7,7 @@
                 <metadata type="programID">beocreate-universal</metadata>
                 <metadata type="modelName" modelID="beocreate-4ca-mk1">Beocreate 4-Channel Amplifier</metadata>
                 <metadata type="checksum">97C9C5A88582888D111259BF70D6D79E</metadata>
+                <metadata type="checksum_sha1">E9C0BF069CC96EA37EDF7E8DEC0720F969EE0D66</metadata>
                 <metadata type="balanceRegister" storable="yes">799</metadata>
                 <metadata type="spdifTXUserDataSource" storable="yes">63135</metadata>
                 <metadata type="spdifTXUserDataL0" storable="yes">63135</metadata>

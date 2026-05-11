@@ -8,6 +8,7 @@
         <metadata type="programID">dacdsp-universal</metadata>
         <metadata type="modelName" modelID="hifiberry-dacdsp">DAC+ DSP</metadata>
         <metadata type="checksum">46425944F76975439E0FD9760106FF83</metadata>
+        <metadata type="checksum_sha1">73EA5CD7BE4DB20510DB6B6BE974103046AEBD50</metadata>
 	<metadata type="balanceRegister" storable="yes">731</metadata>
 	<metadata type="spdifTXUserDataSource" storable="yes">63135</metadata>
 	<metadata type="spdifTXUserDataL0" storable="yes">63135</metadata>
