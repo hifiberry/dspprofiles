@@ -1,7 +1,6 @@
 .PHONY: build clean install help
 
 build:
-	BUILD_DIR="/tmp/dspprofiles-build"; \
 	if [ -n "$$DIST" ]; then \
 		echo "Using distribution from DIST environment variable: $$DIST"; \
 		DIST_ARG="--dist=$$DIST"; \
@@ -17,7 +16,6 @@ build:
 		--enable-network \
 		$$DIST_ARG \
 		$$CHROOT_ARG \
-		--build-dir="$$BUILD_DIR" \
 		--verbose
 
 clean:
