@@ -1,7 +1,7 @@
 .PHONY: build clean install help
 
 build:
-	BUILD_DIR="/tmp/pipewire-api-build"; \
+	BUILD_DIR="/tmp/dspprofiles-build"; \
 	if [ -n "$$DIST" ]; then \
 		echo "Using distribution from DIST environment variable: $$DIST"; \
 		DIST_ARG="--dist=$$DIST"; \
