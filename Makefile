@@ -1,7 +1,24 @@
 .PHONY: build clean install help
 
 build:
-	dpkg-buildpackage -us -uc -b
+	BUILD_DIR="/tmp/pipewire-api-build"; \
+	if [ -n "$$DIST" ]; then \
+		echo "Using distribution from DIST environment variable: $$DIST"; \
+		DIST_ARG="--dist=$$DIST"; \
+		CHROOT_ARG="--chroot=$$CHROOT"; \
+	else \
+		echo "No DIST environment variable set, using sbuild default"; \
+		DIST_ARG=""; \
+		CHROOT_ARG=""; \
+	fi; \
+	sbuild \
+		--chroot-mode=unshare \
+		--no-clean-source \
+		--enable-network \
+		$$DIST_ARG \
+		$$CHROOT_ARG \
+		--build-dir="$$BUILD_DIR" \
+		--verbose
 
 clean:
 	dh_clean || true
