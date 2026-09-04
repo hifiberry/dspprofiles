@@ -6,6 +6,12 @@ Files: *
 Copyright: 2025 HiFiBerry Ltd.
 License: MIT
 
+Files: speaker-presets/*
+Copyright: 2017 Bang & Olufsen
+License: MIT
+Comment: Converted from the speaker presets in https://github.com/hifiberry/create
+ (Beocreate2/beo-speaker-presets) by tools/convert-beocreate-presets.py.
+
 License: MIT
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
