@@ -1,3 +1,14 @@
+hifiberry-dspprofiles (1.2.0) unstable; urgency=medium
+
+  * Ship ten speaker presets in /usr/share/hifiberry/speaker-presets:
+    Beovox CX 50, CX 100 (each also as a stereo pair), 3000, 5000, RL 6000,
+    S 35, S 80, and a flat four-channel "other speaker" preset. They target
+    the bundled Beocreate Universal profile and are applied by sigmatcpserver.
+  * Add tools/convert-beocreate-presets.py, which produced them from the
+    Beocreate 2 originals, so the import is reproducible.
+
+ -- HiFiBerry <support@hifiberry.com>  Fri, 04 Sep 2026 11:37:33 +0000
+
 hifiberry-dspprofiles (1.1.1) unstable; urgency=medium
 
   * Add length-based SHA-1 checksum (<metadata type="checksum_sha1">) to
