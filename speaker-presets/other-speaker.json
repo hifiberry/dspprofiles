@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 2,
+  "id": "other-speaker",
+  "name": "Other Speaker",
+  "source": "Bang & Olufsen, Beocreate 2 (MIT)",
+  "requiredProfile": "beocreate-universal",
+  "minProfileVersion": 11,
+  "sampleRate": 48000,
+  "channels": {
+    "a": {
+      "role": "left",
+      "level": 1.0,
+      "delayMs": 0.0,
+      "invert": false,
+      "enabled": true,
+      "filters": []
+    },
+    "b": {
+      "role": "right",
+      "level": 1.0,
+      "delayMs": 0.0,
+      "invert": false,
+      "enabled": true,
+      "filters": []
+    },
+    "c": {
+      "role": "left",
+      "level": 1.0,
+      "delayMs": 0.0,
+      "invert": false,
+      "enabled": true,
+      "filters": []
+    },
+    "d": {
+      "role": "right",
+      "level": 1.0,
+      "delayMs": 0.0,
+      "invert": false,
+      "enabled": true,
+      "filters": []
+    }
+  },
+  "description": "A basic preset with four full-range channels. Suitable for use as a normal, standalone amplifier."
+}
